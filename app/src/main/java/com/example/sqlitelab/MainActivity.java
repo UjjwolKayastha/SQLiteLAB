@@ -8,6 +8,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.util.List;
+
  public class MainActivity extends AppCompatActivity {
 
      EditText etName, etDesc;
@@ -48,7 +50,14 @@ import android.widget.TextView;
 
     }
      public void printDB(){
-         String dbString = dbHelper.databasetoString();
-         textView.setText(dbString);
+        List<Note> notes = dbHelper.databaseToString();
+        textView.setText("");
+         for (int i=0; i<notes.size();i++){
+             textView.append(notes.get(i).getTitle());
+             textView.append("\n");
+             textView.append(notes.get(i).getDescription());
+             textView.append("\n");
+             textView.append("\n");
+         }
      }
 }
